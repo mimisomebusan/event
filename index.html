@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>MIMISOME BUSAN · 이벤트</title>
+<meta name="description" content="미미썸의원 부산덕천점 — 언어를 선택해 이벤트를 확인하세요.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="MIMISOME BUSAN · 이벤트">
+<meta property="og:description" content="언어를 선택해 이벤트를 확인하세요.">
+<meta property="og:image" content="og.png">
+<link rel="preload" as="image" href="event.png">
+
+<!-- ══════════════════════════════════════════════════════════════
+     매달 바꾸는 곳은 아래 EVENT 블록 하나뿐입니다.
+     · image  : 같은 폴더에 이번 달 사진을 넣고 파일명만 적으세요 (event.jpg)
+     · title  : 큰 글씨 (AUGUST / SEPTEMBER …)
+     · period : 기간 칩
+     · lead   : 안내 한 줄 (언어별)
+     · links  : 각 언어 이벤트 페이지 주소
+     · tint   : 사진에 맞춘 배경색 3개 (배경 / 진한 잉크 / 포인트)
+     ══════════════════════════════════════════════════════════════ -->
+<script>
+const EVENT = {
+  image : "event.png",
+  title : "SEPTEMBER",
+  period: "2026.09.01 — 09.30",
+  lead  : "이벤트를 볼 언어를 선택해 주세요",
+  links : {
+    ko: "kr/index.html",
+    jp: "jp/index.html",
+    tw: "tw/index.html",
+    cn: "cn/index.html",
+    en: "en/index.html"
+  },
+  tint  : {
+    field : "#FBF7F3",   // 배경 (사진의 가장 넓은 색)
+    ink   : "#2E3B37",   // 제목 · 기간 칩
+    accent: "#C6604B"    // 괘선 · 선택 강조
+  }
+};
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@400;500&family=Noto+Sans+TC:wght@400;500&family=Noto+Sans+SC:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+
+<style>
+    html, body { margin:0; padding:0; min-height:100%; background:#FBF7F3; }
+    body { overflow-x:hidden; overflow-y:auto; }
+    body { -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; -webkit-tap-highlight-color:transparent; }
+    a { color:#2E3B37; text-decoration:none; } a:hover { color:#C6604B; }
+    .en { font-family:"Outfit", sans-serif; }
+    .kr { font-family:"Pretendard","Apple SD Gothic Neo",sans-serif; }
+
+    @keyframes gateIn { from{ opacity:0; transform:translateY(10px);} to{ opacity:1; transform:none;} }
+    @keyframes rise { from{ opacity:0; transform:translateY(9px);} to{ opacity:1; transform:none;} }
+    @keyframes ruleGrow { to { opacity:1; width:64px; } }
+    @keyframes tideDrift { 0%,100%{ transform:translateX(-50%) translateY(0) scale(1);} 50%{ transform:translateX(-50%) translateY(-10px) scale(1.03);} }
+    @keyframes hazeBreathe { 0%,100%{ opacity:.55; } 50%{ opacity:.85; } }
+    @media (prefers-reduced-motion: reduce){ .tide, .haze { animation:none !important; } }
+
+    /* 언어 목록 — 하나에 손이 닿으면 나머지가 물러난다 */
+    .lang-list:has(.lang-item:hover) .lang-item:not(:hover){ opacity:.3; }
+    .lang-list:has(.lang-item.is-picked) .lang-item:not(.is-picked){ opacity:.12; }
+    .lang-item .lang-name { transition:font-size .5s cubic-bezier(.25,.46,.45,.94), color .5s cubic-bezier(.25,.46,.45,.94), letter-spacing .5s cubic-bezier(.25,.46,.45,.94); }
+    .lang-item:hover .lang-name, .lang-item:active .lang-name { color:#2E3B37; font-size:23px; }
+    .lang-item.cjk:hover .lang-name, .lang-item.cjk:active .lang-name { font-size:21px; }
+    .lang-item.is-picked .lang-name { color:#C6604B; font-size:25px; }
+    .lang-item.cjk.is-picked .lang-name { font-size:23px; }
+    .gate.is-leaving { animation:gateOut .68s cubic-bezier(.55,.085,.68,.53) forwards; }
+    @keyframes gateOut { to { opacity:0; transform:translateY(-14px); } }
+
+    @media (max-width:380px){ .gate { max-width:322px; } }
+    @media (max-height:720px){
+      .gate-wrap { padding-top:18px !important; padding-bottom:18px !important; }
+      .brand-block { margin-bottom:14px !important; }
+      .gate-title { font-size:46px !important; }
+      .welcome-band { margin:12px 0 8px !important; }
+      .ev-chip { margin-top:9px !important; }
+      .ev-lead { margin-top:10px !important; }
+      .lang-nav { margin-top:16px !important; padding-top:14px !important; padding-bottom:14px !important; }
+      .lang-item { padding-top:7px !important; padding-bottom:7px !important; min-height:34px !important; }
+      .sig-block { margin-top:12px !important; gap:3px !important; }
+    }
+    @media (max-height:600px){
+      .gate-title { font-size:40px !important; }
+      .welcome-band { margin:9px 0 6px !important; }
+      .lang-item { padding-top:5px !important; padding-bottom:5px !important; min-height:30px !important; }
+      .lang-nav { margin-top:12px !important; padding-top:12px !important; padding-bottom:12px !important; }
+    }
+  </style>
+</head>
+<body>
+
+<div style="position:fixed; inset:0; z-index:0; overflow:hidden; background:#FBF7F3;">
+  <div class="tide" style="position:absolute; left:50%; bottom:0; transform:translateX(-50%); width:min(100%, 620px); height:52%; overflow:hidden; animation:tideDrift 20s ease-in-out infinite;">
+    <img id="ev-image" src="event.png" alt="" style="position:absolute; inset:-3% -2%; width:104%; height:106%; object-fit:cover; object-position:50% 88%;">
+    <div style="position:absolute; left:0; right:0; top:0; height:74%; background:linear-gradient(180deg,#FBF7F3 0%, rgba(251,247,243,.96) 52%, rgba(251,247,243,0) 100%);"></div>
+    <div style="position:absolute; left:0; top:0; bottom:0; width:18%; background:linear-gradient(90deg,#FBF7F3 0%, rgba(251,247,243,.5) 44%, rgba(251,247,243,0) 100%);"></div>
+    <div style="position:absolute; right:0; top:0; bottom:0; width:18%; background:linear-gradient(270deg,#FBF7F3 0%, rgba(251,247,243,.5) 44%, rgba(251,247,243,0) 100%);"></div>
+    <div style="position:absolute; inset:0; background:rgba(251,247,243,.46);"></div>
+  </div>
+  <div class="haze" style="position:absolute; left:50%; bottom:-6%; transform:translateX(-50%); width:130vw; height:46vh; background:radial-gradient(ellipse 52% 40% at 50% 100%, rgba(198,96,75,.16) 0%, rgba(255,179,196,.10) 34%, rgba(251,247,243,0) 70%); filter:blur(14px); animation:hazeBreathe 13s ease-in-out infinite;"></div>
+  <div style="position:absolute; inset:0; background:radial-gradient(ellipse 118% 62% at 50% 0%, rgba(255,255,255,.36) 0%, rgba(255,255,255,.08) 52%, rgba(255,255,255,0) 78%);"></div>
+  <div style="position:absolute; inset:0; opacity:.05; mix-blend-mode:multiply; background-image:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyODAiIGhlaWdodD0iMjgwIj48ZmlsdGVyIGlkPSJuIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9IjAuODUiIHNlZWQ9IjQiLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWx0ZXI9InVybCgjbikiLz48L3N2Zz4=);"></div>
+</div>
+
+<div class="gate-wrap" style="position:relative; z-index:1; min-height:100dvh; height:auto; display:flex; align-items:center; justify-content:center; padding:26px 20px;">
+  <div class="gate" id="gate" style="width:100%; max-width:380px; display:flex; flex-direction:column; align-items:center; text-align:center; animation:gateIn 1.1s cubic-bezier(.16,1,.3,1) both;">
+
+    <div class="brand-block" style="display:flex; flex-direction:column; align-items:center; margin-bottom:20px; opacity:0; animation:rise .95s cubic-bezier(.16,1,.3,1) .12s forwards;">
+      <div class="en" style="font-size:15px; font-weight:600; letter-spacing:.3em; text-indent:.3em; color:#2E3B37;">MIMISOME</div>
+      <div class="en" style="margin-top:9px; font-size:8.5px; font-weight:600; letter-spacing:.34em; text-indent:.34em; color:#6E7B72;">BUSAN · DEOKCHEON</div>
+    </div>
+
+    <div style="width:0; height:1px; background:linear-gradient(90deg, rgba(198,96,75,0), #C6604B 50%, rgba(198,96,75,0)); opacity:0; animation:ruleGrow 1.05s cubic-bezier(.16,1,.3,1) .48s forwards;"></div>
+
+    <div id="welcome" class="welcome-band" style="position:relative; width:100%; max-width:280px; height:24px; margin:18px 0 12px; overflow:hidden; opacity:0; animation:rise .95s cubic-bezier(.16,1,.3,1) .66s forwards;">
+      <span class="wl en is-on" style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; white-space:nowrap; font-size:13px; font-weight:500; letter-spacing:.14em; color:#6E7B72; transform:translateY(0); opacity:.9; transition:transform 1.3s cubic-bezier(.65,0,.35,1), opacity 1.3s cubic-bezier(.65,0,.35,1);">WELCOME</span>
+      <span class="wl kr" style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; white-space:nowrap; font-size:13px; font-weight:500; letter-spacing:.06em; color:#6E7B72; transform:translateY(24px); opacity:0; transition:transform 1.3s cubic-bezier(.65,0,.35,1), opacity 1.3s cubic-bezier(.65,0,.35,1);">환영합니다</span>
+      <span class="wl" style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; white-space:nowrap; font-family:'Noto Sans TC',sans-serif; font-size:13px; font-weight:500; letter-spacing:.06em; color:#6E7B72; transform:translateY(24px); opacity:0; transition:transform 1.3s cubic-bezier(.65,0,.35,1), opacity 1.3s cubic-bezier(.65,0,.35,1);">歡迎光臨</span>
+      <span class="wl" style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; white-space:nowrap; font-family:'Noto Sans JP',sans-serif; font-size:13px; font-weight:500; letter-spacing:.06em; color:#6E7B72; transform:translateY(24px); opacity:0; transition:transform 1.3s cubic-bezier(.65,0,.35,1), opacity 1.3s cubic-bezier(.65,0,.35,1);">ようこそ</span>
+      <span class="wl" style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; white-space:nowrap; font-family:'Noto Sans SC',sans-serif; font-size:13px; font-weight:500; letter-spacing:.06em; color:#6E7B72; transform:translateY(24px); opacity:0; transition:transform 1.3s cubic-bezier(.65,0,.35,1), opacity 1.3s cubic-bezier(.65,0,.35,1);">欢迎光临</span>
+    </div>
+
+    <h1 id="ev-title" class="gate-title en" style="margin:0; font-size:clamp(46px,15vw,60px); font-weight:700; letter-spacing:-.05em; line-height:.92; color:#2E3B37; opacity:0; animation:rise 1.15s cubic-bezier(.16,1,.3,1) .84s forwards;">AUGUST</h1>
+
+    <div id="ev-period" class="en ev-chip" style="margin-top:12px; font-size:11.5px; font-weight:700; letter-spacing:.14em; color:#FFF3E4; background:#2E3B37; padding:7px 15px; border-radius:999px; white-space:nowrap; opacity:0; animation:rise 1s cubic-bezier(.16,1,.3,1) 1s forwards;">2026.08.01 — 08.31</div>
+
+    <p id="ev-lead" class="kr ev-lead" style="margin:14px 0 0; font-size:13px; font-weight:500; letter-spacing:.01em; color:#6E7B72; white-space:nowrap; opacity:0; animation:rise 1s cubic-bezier(.16,1,.3,1) 1.12s forwards;">이벤트를 볼 언어를 선택해 주세요</p>
+
+    <nav class="lang-nav" style="background:radial-gradient(72% 62% at 50% 50%, rgba(251,247,243,.9) 0%, rgba(251,247,243,.62) 62%, rgba(251,247,243,0) 100%); position:relative; width:100%; margin-top:24px; padding:18px 20px; opacity:0; animation:rise 1.05s cubic-bezier(.16,1,.3,1) 1.3s forwards;">
+      <span style="position:absolute; top:0; left:0; width:13px; height:13px; border:1px solid #C6604B; border-width:1px 0 0 1px; opacity:.6;"></span>
+      <span style="position:absolute; top:0; right:0; width:13px; height:13px; border:1px solid #C6604B; border-width:1px 1px 0 0; opacity:.6;"></span>
+      <span style="position:absolute; bottom:0; left:0; width:13px; height:13px; border:1px solid #C6604B; border-width:0 0 1px 1px; opacity:.6;"></span>
+      <span style="position:absolute; bottom:0; right:0; width:13px; height:13px; border:1px solid #C6604B; border-width:0 1px 1px 0; opacity:.6;"></span>
+
+      <div class="lang-list" style="display:flex; flex-direction:column; align-items:center; gap:0;">
+        <a class="lang-item" data-lang="ko" href="kr/index.html" style="display:block; width:100%; padding:9px 12px; min-height:40px; text-decoration:none; opacity:1; transition:opacity .5s cubic-bezier(.25,.46,.45,.94);">
+          <span class="lang-name kr" style="display:block; font-size:20px; font-weight:400; letter-spacing:.05em; color:#6E7B72;">한국어</span>
+        </a>
+        <a class="lang-item cjk" data-lang="jp" href="jp/index.html" style="display:block; width:100%; padding:9px 12px; min-height:40px; text-decoration:none; opacity:1; transition:opacity .5s cubic-bezier(.25,.46,.45,.94);">
+          <span class="lang-name" style="display:block; font-family:'Noto Sans JP',sans-serif; font-size:18px; font-weight:400; letter-spacing:.04em; color:#6E7B72;">日本語</span>
+        </a>
+        <a class="lang-item cjk" data-lang="tw" href="tw/index.html" style="display:block; width:100%; padding:9px 12px; min-height:40px; text-decoration:none; opacity:1; transition:opacity .5s cubic-bezier(.25,.46,.45,.94);">
+          <span class="lang-name" style="display:block; font-family:'Noto Sans TC',sans-serif; font-size:18px; font-weight:400; letter-spacing:.05em; color:#6E7B72;">中文 · 繁體</span>
+        </a>
+        <a class="lang-item cjk" data-lang="cn" href="cn/index.html" style="display:block; width:100%; padding:9px 12px; min-height:40px; text-decoration:none; opacity:1; transition:opacity .5s cubic-bezier(.25,.46,.45,.94);">
+          <span class="lang-name" style="display:block; font-family:'Noto Sans SC',sans-serif; font-size:18px; font-weight:400; letter-spacing:.05em; color:#6E7B72;">中文 · 简体</span>
+        </a>
+        <a class="lang-item" data-lang="en" href="en/index.html" style="display:block; width:100%; padding:9px 12px; min-height:40px; text-decoration:none; opacity:1; transition:opacity .5s cubic-bezier(.25,.46,.45,.94);">
+          <span class="lang-name en" style="display:block; font-size:20px; font-weight:500; letter-spacing:.01em; color:#6E7B72;">English</span>
+        </a>
+      </div>
+    </nav>
+
+    <div class="sig-block" style="margin-top:24px; display:flex; flex-direction:column; align-items:center; gap:6px; opacity:0; animation:rise 1s cubic-bezier(.16,1,.3,1) 1.62s forwards;">
+      <span style="width:22px; height:1px; background:rgba(0,65,78,.3);"></span>
+      <span class="en" style="font-size:10px; font-weight:600; letter-spacing:.2em; color:rgba(0,65,78,.55);">MIMISOME BUSAN DEOKCHEON</span>
+      <span class="en" style="font-size:9px; font-weight:500; letter-spacing:.26em; color:rgba(0,65,78,.4);">EST. 2024</span>
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function(){
+  /* ── 설정 적용 ─────────────────────────────── */
+  var img = document.getElementById("ev-image");
+  if (img && EVENT.image) img.src = EVENT.image;
+  var t = document.getElementById("ev-title");   if (t) t.textContent = EVENT.title;
+  var p = document.getElementById("ev-period");  if (p) p.textContent = EVENT.period;
+  var l = document.getElementById("ev-lead");    if (l) l.textContent = EVENT.lead;
+  document.querySelectorAll(".lang-item").forEach(function(a){
+    var k = a.getAttribute("data-lang");
+    if (EVENT.links && EVENT.links[k]) a.setAttribute("href", EVENT.links[k]);
+  });
+  if (EVENT.tint) {
+    var css = document.documentElement.style;
+    document.body.style.background = EVENT.tint.field;
+    document.querySelectorAll('[style*="FBF7F3"]').forEach(function(el){
+      el.setAttribute("style", el.getAttribute("style").split("#FBF7F3").join(EVENT.tint.field));
+    });
+    document.querySelectorAll('[style*="2E3B37"]').forEach(function(el){
+      el.setAttribute("style", el.getAttribute("style").split("#2E3B37").join(EVENT.tint.ink));
+    });
+    document.querySelectorAll('[style*="C6604B"]').forEach(function(el){
+      el.setAttribute("style", el.getAttribute("style").split("#C6604B").join(EVENT.tint.accent));
+    });
+  }
+
+  /* ── 다국어 인사 — 한 틱 안에서 완결(중첩 타이머 없음) ── */
+  var slots = Array.prototype.slice.call(document.querySelectorAll(".wl"));
+  if (slots.length > 1) {
+    var i = 0;
+    var step = function(){
+      var out = slots[i];
+      out.style.transition = "";
+      out.style.transform = "translateY(-24px)";
+      out.style.opacity = "0";
+
+      i = (i + 1) % slots.length;
+      var nxt = slots[i];
+
+      slots.forEach(function(el){
+        if (el === out || el === nxt) return;
+        el.style.transition = "none";
+        el.style.transform = "translateY(24px)";
+        el.style.opacity = "0";
+      });
+      nxt.style.transition = "none";
+      nxt.style.transform = "translateY(24px)";
+      nxt.style.opacity = "0";
+      void nxt.offsetHeight;
+      slots.forEach(function(el){ if (el !== out) el.style.transition = ""; });
+      nxt.style.transform = "translateY(0)";
+      nxt.style.opacity = ".9";
+    };
+    setInterval(step, 3500);
+  }
+
+  /* ── 선택 → 형제 페이드 → 이동 ─────────────── */
+  var gate = document.getElementById("gate");
+  document.querySelectorAll(".lang-item").forEach(function(a){
+    a.addEventListener("click", function(e){
+      var url = a.getAttribute("href");
+      if (!url || url === "#") return;
+      e.preventDefault();
+      a.classList.add("is-picked");
+      setTimeout(function(){ if (gate) gate.classList.add("is-leaving"); }, 330);
+      setTimeout(function(){ window.location.href = url; }, 870);
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
