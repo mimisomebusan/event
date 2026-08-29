@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>MIMISOME BUSAN · 이벤트</title>
+<meta name="description" content="미미썸의원 부산덕천점 — 언어를 선택해 이벤트를 확인하세요.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="MIMISOME BUSAN · 이벤트">
+<meta property="og:description" content="언어를 선택해 이벤트를 확인하세요.">
+<!-- 링크 미리보기: 카톡·라인은 절대 주소만 읽습니다. 도메인이 바뀌면 아래 5줄을 함께 바꾸세요. -->
+<meta property="og:image" content="https://mimisomebusan.github.io/event/og.png">
+<meta property="og:image:secure_url" content="https://mimisomebusan.github.io/event/og.png">
+<meta property="og:image:width" content="800">
+<meta property="og:image:height" content="800">
+<meta property="og:image:type" content="image/png">
+<meta property="og:url" content="https://mimisomebusan.github.io/event/">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="MIMISOME BUSAN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mimisomebusan.github.io/event/og.png">
+<link rel="preload" as="image" href="event.jpg">
+
+<!-- ══════════════════════════════════════════════════════════════
+     매달 바꾸는 곳은 아래 EVENT 블록 하나뿐입니다.
+     · image  : 같은 폴더에 이번 달 사진을 넣고 파일명만 적으세요 (event.jpg)
+     · title  : 큰 글씨 (SEPTEMBER / OCTOBER …)
+     · period : 기간 칩
+     · foot   : 하단 시그니처 한 줄
+     · links  : 각 언어 이벤트 페이지 주소
+     · tint   : 사진에 맞춘 색 3개 (배경 / 진한 잉크 / 포인트)
+     ══════════════════════════════════════════════════════════════ -->
+<script>
+const EVENT = {
+  image : "event.jpg",
+  title : "SEPTEMBER",
+  period: "2026.09.01 — 09.30",
+  foot  : "SEPTEMBER EVENT · MIMISOME CLINIC",
+  links : {
+    ko: "kr/index.html",
+    jp: "jp/index.html",
+    tw: "tw/index.html",
+    cn: "cn/index.html",
+    en: "en/index.html"
+  },
+  tint  : {
+    field : "#F6F2EA",   // 배경 (사진의 가장 넓은 색)
+    ink   : "#33403A",   // 제목 · 기간 칩 · 선택 카드
+    accent: "#B08A4F"    // 괘선 · 포인트
+  }
+};
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&family=Noto+Sans+JP:wght@400;500&family=Noto+Sans+TC:wght@400;500&family=Noto+Sans+SC:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+
+:root{
+  --canvas:#F6F2EA;
+  --ink:#33403A;
+  --ink-mid:#4A5349;
+  --ink-mute:#6B6653;
+  --ink-faint:rgba(51,64,58,.44);
+  --gold:#B08A4F;
+  --gold-soft:#A08B5F;
+  --cream:#FFFAF0;
+  --sage:#8C9A8E;
+  --bark:#6B5A3C;
+  --line:rgba(176,138,79,.28);
+
+  --f-en:'Outfit',sans-serif;
+  --f-kr:'Pretendard','Apple SD Gothic Neo',sans-serif;
+  --f-jp:'Noto Sans JP',sans-serif;
+  --f-tc:'Noto Sans TC',sans-serif;
+  --f-sc:'Noto Sans SC',sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+
+html,body{min-height:100%;}
+body{
+  font-family:var(--f-en);
+  background:var(--canvas);
+  color:var(--ink);
+  min-height:100dvh;
+  display:flex;align-items:center;justify-content:center;
+  padding:34px 22px;
+  position:relative;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+/* ── 배경 — 보태니컬 이미지 + 아이보리 베일 (기존 그대로) ── */
+.bg{position:fixed;inset:0;z-index:0;overflow:hidden;background:#F6F2EA;pointer-events:none;}
+.bg__frame{position:absolute;left:50%;top:0;bottom:0;transform:translateX(-50%);width:min(100%,600px);overflow:hidden;}
+.bg__leaf{position:absolute;inset:0;animation:leafDrift 26s ease-in-out infinite;}
+.bg__leaf img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:52% 32%;}
+.bg__edgeL{position:absolute;left:0;top:0;bottom:0;width:16%;background:linear-gradient(90deg,#F6F2EA 0%,rgba(246,242,234,.45) 52%,rgba(246,242,234,0) 100%);}
+.bg__edgeR{position:absolute;right:0;top:0;bottom:0;width:16%;background:linear-gradient(270deg,#F6F2EA 0%,rgba(246,242,234,.45) 52%,rgba(246,242,234,0) 100%);}
+.bg__veil{position:absolute;inset:0;background:radial-gradient(ellipse 62% 46% at 50% 46%,rgba(246,242,234,.97) 0%,rgba(246,242,234,.9) 48%,rgba(246,242,234,.45) 76%,rgba(246,242,234,.08) 100%);animation:veilBreathe 15s ease-in-out infinite;}
+.bg__fade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(246,242,234,.5) 0%,rgba(246,242,234,0) 26%,rgba(246,242,234,0) 72%,rgba(246,242,234,.55) 100%);}
+.bg__glow{position:absolute;inset:0;background:radial-gradient(ellipse 96% 60% at 50% 104%,rgba(176,138,79,.14) 0%,rgba(176,138,79,0) 68%);}
+.bg__grain{position:absolute;inset:0;opacity:.045;mix-blend-mode:multiply;background-image:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyODAiIGhlaWdodD0iMjgwIj48ZmlsdGVyIGlkPSJuIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9IjAuODUiIHNlZWQ9IjQiLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWx0ZXI9InVybCgjbikiLz48L3N2Zz4=);}
+@keyframes leafDrift{0%,100%{transform:scale(1.06) translate3d(0,0,0);}50%{transform:scale(1.09) translate3d(0,-12px,0);}}
+@keyframes veilBreathe{0%,100%{opacity:.86;}50%{opacity:.7;}}
+@media (prefers-reduced-motion:reduce){.bg__leaf,.bg__veil{animation:none;}}
+
+/* ── Stage ── */
+.stage{
+  position:relative;z-index:1;width:100%;max-width:380px;
+  text-align:center;display:flex;flex-direction:column;align-items:center;
+  animation:stageIn .9s var(--ease) both;
+}
+@keyframes stageIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+.stage.leaving{animation:stageOut .6s cubic-bezier(.55,.085,.68,.53) forwards;}
+@keyframes stageOut{to{opacity:0;transform:translateY(-10px);}}
+
+/* ── 브랜드 아이브로우 ── */
+.brand{display:inline-flex;align-items:center;gap:8px;white-space:nowrap;margin-bottom:14px;opacity:0;animation:rise .8s var(--ease) .1s forwards;}
+.brand__dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex:none;}
+.brand__label{font-size:10.5px;font-weight:600;letter-spacing:.18em;color:var(--ink);}
+
+/* ── 히어로 ── */
+.hero{
+  font-family:var(--f-en);font-weight:300;line-height:.98;letter-spacing:.005em;
+  font-size:clamp(46px,14.5vw,60px);color:var(--ink);
+  margin-bottom:15px;opacity:0;animation:rise .9s var(--ease) .2s forwards;
+}
+
+/* ── 기간 뱃지 — 골드 헤어라인 필 ── */
+.pill{
+  display:inline-block;font-size:11px;font-weight:600;letter-spacing:.16em;
+  color:var(--ink);background:rgba(255,253,248,.72);
+  border:1px solid rgba(176,138,79,.55);
+  padding:7px 16px;border-radius:999px;white-space:nowrap;
+  margin-bottom:24px;opacity:0;animation:rise .9s var(--ease) .32s forwards;
+}
+
+/* ── 다국어 안내 순환 ── */
+.eyebrow{position:relative;height:24px;width:100%;max-width:300px;margin-bottom:18px;overflow:hidden;opacity:0;animation:fade .9s var(--ease) .44s forwards;}
+.eyebrow__slot{
+  position:absolute;top:0;left:0;right:0;height:100%;
+  display:flex;align-items:center;justify-content:center;white-space:nowrap;pointer-events:none;
+  transform:translateY(24px);opacity:0;
+  transition:transform 1.2s cubic-bezier(.65,0,.35,1),opacity 1.2s cubic-bezier(.65,0,.35,1);
+  font-weight:500;font-size:13px;letter-spacing:.01em;color:var(--ink-mute);line-height:1;
+}
+.eyebrow__slot.active{transform:translateY(0);opacity:1;}
+.eyebrow__slot.exiting{transform:translateY(-24px);opacity:0;}
+.eyebrow__slot.en{font-family:var(--f-en);letter-spacing:.06em;}
+.eyebrow__slot.ko{font-family:var(--f-kr);}
+.eyebrow__slot.jp{font-family:var(--f-jp);}
+.eyebrow__slot.tw{font-family:var(--f-tc);}
+.eyebrow__slot.cn{font-family:var(--f-sc);}
+
+/* ── 언어 카드 ── */
+.lang-list{width:100%;display:flex;flex-direction:column;gap:9px;margin-bottom:26px;}
+.lang-item{
+  position:relative;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  width:100%;min-height:56px;padding:15px 20px;
+  background:rgba(255,253,248,.9);
+  border:1px solid var(--line);
+  border-radius:14px;text-decoration:none;
+  box-shadow:0 2px 12px rgba(93,79,45,.05);
+  cursor:pointer;opacity:0;transform:translateY(8px);
+  transition:transform .35s var(--ease),border-color .35s var(--ease),box-shadow .35s var(--ease),background .35s var(--ease),opacity .45s var(--ease);
+}
+.lang-item:nth-child(1){animation:cardIn .7s var(--ease) .54s forwards;}
+.lang-item:nth-child(2){animation:cardIn .7s var(--ease) .62s forwards;}
+.lang-item:nth-child(3){animation:cardIn .7s var(--ease) .70s forwards;}
+.lang-item:nth-child(4){animation:cardIn .7s var(--ease) .78s forwards;}
+.lang-item:nth-child(5){animation:cardIn .7s var(--ease) .86s forwards;}
+@keyframes cardIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+.lang-name{font-size:16.5px;font-weight:500;letter-spacing:-.01em;color:var(--ink-mid);white-space:nowrap;transition:color .3s var(--ease);}
+.lang-item.en .lang-name{font-family:var(--f-en);}
+.lang-item.ko .lang-name{font-family:var(--f-kr);}
+.lang-item.jp .lang-name{font-family:var(--f-jp);font-size:15.5px;}
+.lang-item.tw .lang-name{font-family:var(--f-tc);font-size:15.5px;}
+.lang-item.cn .lang-name{font-family:var(--f-sc);font-size:15.5px;}
+
+.lang-meta{display:inline-flex;align-items:center;gap:9px;flex:none;}
+.lang-code{font-family:var(--f-en);font-size:10px;font-weight:600;letter-spacing:.18em;color:var(--gold-soft);transition:color .3s var(--ease);}
+.lang-arrow{width:14px;height:14px;flex:none;stroke:var(--gold-soft);stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:stroke .3s var(--ease),transform .35s var(--ease);}
+
+@media(hover:hover){
+  .lang-item:hover{transform:translateY(-2px);border-color:rgba(176,138,79,.7);box-shadow:0 8px 22px rgba(93,79,45,.12);background:rgba(255,253,248,.98);}
+  .lang-item:hover .lang-arrow{transform:translateX(2px);stroke:var(--gold);}
+  .lang-item:hover .lang-code{color:var(--gold);}
+  .lang-list:has(.lang-item:hover) .lang-item:not(:hover){opacity:.6;}
+}
+.lang-item:active{transform:translateY(0);box-shadow:0 1px 6px rgba(93,79,45,.07);}
+
+/* 선택 — 딥 세이지 반전 */
+.lang-item.selected{background:var(--ink);border-color:var(--ink);box-shadow:0 8px 24px rgba(51,64,58,.24);}
+.lang-item.selected .lang-name{color:var(--cream);}
+.lang-item.selected .lang-code{color:rgba(255,250,240,.65);}
+.lang-item.selected .lang-arrow{stroke:rgba(255,250,240,.85);transform:translateX(3px);}
+.lang-list:has(.lang-item.selected) .lang-item:not(.selected){opacity:.3;}
+
+/* ── 하단 — 3색 헤어라인 + 시그니처 ── */
+.stripe{
+  width:56px;height:3px;border-radius:999px;
+  background:linear-gradient(90deg,var(--gold) 0 33.333%,var(--sage) 0 66.666%,var(--bark) 0);
+  margin-bottom:12px;opacity:0;animation:rise .8s var(--ease) .98s forwards;
+}
+.footer{font-size:9.5px;font-weight:600;letter-spacing:.16em;color:var(--ink-faint);white-space:nowrap;opacity:0;animation:rise .8s var(--ease) 1.06s forwards;}
+
+@keyframes rise{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fade{from{opacity:0;}to{opacity:1;}}
+
+@media(max-width:380px){.stage{max-width:332px;}}
+@media(max-height:760px){
+  .hero{font-size:clamp(42px,13vw,54px);margin-bottom:12px;}
+  .pill{margin-bottom:18px;}
+  .eyebrow{margin-bottom:14px;}
+  .lang-list{gap:8px;margin-bottom:20px;}
+  .lang-item{min-height:50px;padding:12px 18px;}
+}
+@media(max-height:640px){
+  .brand{margin-bottom:10px;}
+  .hero{font-size:38px;}
+  .lang-item{min-height:46px;padding:10px 16px;}
+  .lang-name{font-size:15.5px;}
+}
+</style>
+</head>
+<body>
+
+<div class="bg">
+  <div class="bg__frame">
+    <div class="bg__leaf"><img id="ev-image" src="event.jpg" alt=""></div>
+    <div class="bg__edgeL"></div>
+    <div class="bg__edgeR"></div>
+  </div>
+  <div class="bg__veil"></div>
+  <div class="bg__fade"></div>
+  <div class="bg__glow"></div>
+  <div class="bg__grain"></div>
+</div>
+
+<div class="stage" id="stage">
+
+  <div class="brand">
+    <span class="brand__dot"></span>
+    <span class="brand__label">MIMISOME BUSAN DEOKCHEON</span>
+  </div>
+
+  <h1 class="hero" id="ev-title">SEPTEMBER</h1>
+
+  <div class="pill" id="ev-period">2026.09.01 — 09.30</div>
+
+  <div class="eyebrow" id="eyebrow">
+    <span class="eyebrow__slot ko active">이벤트를 볼 언어를 선택해 주세요</span>
+    <span class="eyebrow__slot en">Choose your language</span>
+    <span class="eyebrow__slot tw">請選擇語言</span>
+    <span class="eyebrow__slot jp">言語をお選びください</span>
+    <span class="eyebrow__slot cn">请选择语言</span>
+  </div>
+
+  <nav class="lang-list">
+    <a class="lang-item ko" data-lang="ko" href="kr/index.html">
+      <span class="lang-name">한국어</span>
+      <span class="lang-meta">
+        <span class="lang-code">KR</span>
+        <svg class="lang-arrow" viewBox="0 0 16 16"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg>
+      </span>
+    </a>
+    <a class="lang-item jp" data-lang="jp" href="jp/index.html">
+      <span class="lang-name">日本語</span>
+      <span class="lang-meta">
+        <span class="lang-code">JP</span>
+        <svg class="lang-arrow" viewBox="0 0 16 16"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg>
+      </span>
+    </a>
+    <a class="lang-item tw" data-lang="tw" href="tw/index.html">
+      <span class="lang-name">中文 · 繁體</span>
+      <span class="lang-meta">
+        <span class="lang-code">TW</span>
+        <svg class="lang-arrow" viewBox="0 0 16 16"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg>
+      </span>
+    </a>
+    <a class="lang-item cn" data-lang="cn" href="cn/index.html">
+      <span class="lang-name">中文 · 简体</span>
+      <span class="lang-meta">
+        <span class="lang-code">CN</span>
+        <svg class="lang-arrow" viewBox="0 0 16 16"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg>
+      </span>
+    </a>
+    <a class="lang-item en" data-lang="en" href="en/index.html">
+      <span class="lang-name">English</span>
+      <span class="lang-meta">
+        <span class="lang-code">EN</span>
+        <svg class="lang-arrow" viewBox="0 0 16 16"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg>
+      </span>
+    </a>
+  </nav>
+
+  <div class="stripe"></div>
+  <div class="footer" id="ev-foot">SEPTEMBER EVENT · MIMISOME CLINIC</div>
+
+</div>
+
+<script>
+(function(){
+  /* ── 설정 적용 ─────────────────────────────── */
+  var img = document.getElementById("ev-image");
+  if (img && EVENT.image) img.src = EVENT.image;
+  var t = document.getElementById("ev-title");   if (t && EVENT.title) t.textContent = EVENT.title;
+  var p = document.getElementById("ev-period");  if (p && EVENT.period) p.textContent = EVENT.period;
+  var f = document.getElementById("ev-foot");    if (f && EVENT.foot) f.textContent = EVENT.foot;
+  document.querySelectorAll(".lang-item").forEach(function(a){
+    var k = a.getAttribute("data-lang");
+    if (EVENT.links && EVENT.links[k]) a.setAttribute("href", EVENT.links[k]);
+  });
+  if (EVENT.tint) {
+    var r = document.documentElement.style;
+    r.setProperty("--canvas", EVENT.tint.field);
+    r.setProperty("--ink", EVENT.tint.ink);
+    r.setProperty("--gold", EVENT.tint.accent);
+  }
+
+  /* ── 다국어 안내 순환 ─────────────────────── */
+  var slots = Array.prototype.slice.call(document.querySelectorAll(".eyebrow__slot"));
+  if (slots.length > 1) {
+    var TRANSITION = 1200, SETTLED = 2100, i = 0;
+    setInterval(function(){
+      var cur = slots[i];
+      cur.classList.remove("active");
+      cur.classList.add("exiting");
+      i = (i + 1) % slots.length;
+      slots[i].classList.add("active");
+      setTimeout(function(){ cur.classList.remove("exiting"); }, TRANSITION + 50);
+    }, TRANSITION + SETTLED);
+  }
+
+  /* ── 선택 → 반전 점화 → 페이드아웃 → 이동 ── */
+  var stage = document.getElementById("stage");
+  document.querySelectorAll(".lang-item").forEach(function(a){
+    a.addEventListener("click", function(e){
+      var url = a.getAttribute("href");
+      if (!url || url === "#") return;
+      e.preventDefault();
+      a.classList.add("selected");
+      setTimeout(function(){ if (stage) stage.classList.add("leaving"); }, 320);
+      setTimeout(function(){ window.location.href = url; }, 800);
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
