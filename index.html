@@ -33,9 +33,9 @@
 <script>
 const EVENT = {
   image : "event.jpg",
-  title : "SEPTEMBER",
-  period: "2026.09.01 — 09.30",
-  foot  : "SEPTEMBER EVENT · MIMISOME CLINIC",
+  title : "OCTOBER",
+  period: "2026.10.01 — 10.31",
+  foot  : "OCTOBER EVENT · MIMISOME CLINIC",
   links : {
     ko: "kr/index.html",
     jp: "jp/index.html",
@@ -44,9 +44,9 @@ const EVENT = {
     en: "en/index.html"
   },
   tint  : {
-    field : "#F6F2EA",   // 배경 (사진의 가장 넓은 색)
-    ink   : "#33403A",   // 제목 · 기간 칩 · 선택 카드
-    accent: "#B08A4F"    // 괘선 · 포인트
+    field : "#F3EEE6",   // 배경 (사진의 가장 넓은 색)
+    ink   : "#241A14",   // 제목 · 기간 칩 · 선택 카드
+    accent: "#B4703B"    // 괘선 · 포인트
   }
 };
 </script>
@@ -60,17 +60,17 @@ const EVENT = {
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 
 :root{
-  --canvas:#F6F2EA;
-  --ink:#33403A;
-  --ink-mid:#4A5349;
-  --ink-mute:#6B6653;
-  --ink-faint:rgba(51,64,58,.44);
-  --gold:#B08A4F;
-  --gold-soft:#A08B5F;
-  --cream:#FFFAF0;
-  --sage:#8C9A8E;
-  --bark:#6B5A3C;
-  --line:rgba(176,138,79,.28);
+  --canvas:#F3EEE6;
+  --ink:#241A14;
+  --ink-mid:#3E2A1F;
+  --ink-mute:#6B5A4A;
+  --ink-faint:rgba(36,26,20,.44);
+  --gold:#B4703B;
+  --gold-soft:#9A552B;
+  --cream:#FCF7EE;
+  --sage:#D9B98F;
+  --bark:#4E382B;
+  --line:rgba(180,112,59,.28);
 
   --f-en:'Outfit',sans-serif;
   --f-kr:'Pretendard','Apple SD Gothic Neo',sans-serif;
@@ -94,19 +94,19 @@ body{
   text-rendering:optimizeLegibility;
 }
 
-/* ── 배경 — 보태니컬 이미지 + 아이보리 베일 (기존 그대로) ── */
-.bg{position:fixed;inset:0;z-index:0;overflow:hidden;background:#F6F2EA;pointer-events:none;}
+/* ── 배경 — 10월 스와치 이미지 + 페이퍼 베일 ── */
+.bg{position:fixed;inset:0;z-index:0;overflow:hidden;background:#F3EEE6;pointer-events:none;}
 .bg__frame{position:absolute;left:50%;top:0;bottom:0;transform:translateX(-50%);width:min(100%,600px);overflow:hidden;}
 .bg__leaf{position:absolute;inset:0;animation:leafDrift 26s ease-in-out infinite;}
-.bg__leaf img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:52% 32%;}
-.bg__edgeL{position:absolute;left:0;top:0;bottom:0;width:16%;background:linear-gradient(90deg,#F6F2EA 0%,rgba(246,242,234,.45) 52%,rgba(246,242,234,0) 100%);}
-.bg__edgeR{position:absolute;right:0;top:0;bottom:0;width:16%;background:linear-gradient(270deg,#F6F2EA 0%,rgba(246,242,234,.45) 52%,rgba(246,242,234,0) 100%);}
-.bg__veil{position:absolute;inset:0;background:radial-gradient(ellipse 62% 46% at 50% 46%,rgba(246,242,234,.97) 0%,rgba(246,242,234,.9) 48%,rgba(246,242,234,.45) 76%,rgba(246,242,234,.08) 100%);animation:veilBreathe 15s ease-in-out infinite;}
-.bg__fade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(246,242,234,.5) 0%,rgba(246,242,234,0) 26%,rgba(246,242,234,0) 72%,rgba(246,242,234,.55) 100%);}
-.bg__glow{position:absolute;inset:0;background:radial-gradient(ellipse 96% 60% at 50% 104%,rgba(176,138,79,.14) 0%,rgba(176,138,79,0) 68%);}
+.bg__leaf img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:58% 44%;}
+.bg__edgeL{position:absolute;left:0;top:0;bottom:0;width:16%;background:linear-gradient(90deg,#F3EEE6 0%,rgba(243,238,230,.45) 52%,rgba(243,238,230,0) 100%);}
+.bg__edgeR{position:absolute;right:0;top:0;bottom:0;width:16%;background:linear-gradient(270deg,#F3EEE6 0%,rgba(243,238,230,.45) 52%,rgba(243,238,230,0) 100%);}
+.bg__veil{position:absolute;inset:0;background:radial-gradient(ellipse 58% 44% at 50% 47%,rgba(243,238,230,.84) 0%,rgba(243,238,230,.6) 44%,rgba(243,238,230,.14) 74%,rgba(243,238,230,0) 100%);animation:veilBreathe 15s ease-in-out infinite;}
+.bg__fade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(243,238,230,.3) 0%,rgba(243,238,230,0) 20%,rgba(243,238,230,0) 80%,rgba(243,238,230,.3) 100%);}
+.bg__glow{position:absolute;inset:0;background:radial-gradient(ellipse 96% 60% at 50% 104%,rgba(180,112,59,.2) 0%,rgba(180,112,59,0) 68%);}
 .bg__grain{position:absolute;inset:0;opacity:.045;mix-blend-mode:multiply;background-image:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyODAiIGhlaWdodD0iMjgwIj48ZmlsdGVyIGlkPSJuIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9IjAuODUiIHNlZWQ9IjQiLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWx0ZXI9InVybCgjbikiLz48L3N2Zz4=);}
 @keyframes leafDrift{0%,100%{transform:scale(1.06) translate3d(0,0,0);}50%{transform:scale(1.09) translate3d(0,-12px,0);}}
-@keyframes veilBreathe{0%,100%{opacity:.86;}50%{opacity:.7;}}
+@keyframes veilBreathe{0%,100%{opacity:.92;}50%{opacity:.78;}}
 @media (prefers-reduced-motion:reduce){.bg__leaf,.bg__veil{animation:none;}}
 
 /* ── Stage ── */
@@ -135,7 +135,7 @@ body{
 .pill{
   display:inline-block;font-size:11px;font-weight:600;letter-spacing:.16em;
   color:var(--ink);background:rgba(255,253,248,.72);
-  border:1px solid rgba(176,138,79,.55);
+  border:1px solid rgba(180,112,59,.55);
   padding:7px 16px;border-radius:999px;white-space:nowrap;
   margin-bottom:24px;opacity:0;animation:rise .9s var(--ease) .32s forwards;
 }
@@ -165,7 +165,7 @@ body{
   background:rgba(255,253,248,.9);
   border:1px solid var(--line);
   border-radius:14px;text-decoration:none;
-  box-shadow:0 2px 12px rgba(93,79,45,.05);
+  box-shadow:0 2px 12px rgba(62,42,31,.05);
   cursor:pointer;opacity:0;transform:translateY(8px);
   transition:transform .35s var(--ease),border-color .35s var(--ease),box-shadow .35s var(--ease),background .35s var(--ease),opacity .45s var(--ease);
 }
@@ -188,18 +188,18 @@ body{
 .lang-arrow{width:14px;height:14px;flex:none;stroke:var(--gold-soft);stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:stroke .3s var(--ease),transform .35s var(--ease);}
 
 @media(hover:hover){
-  .lang-item:hover{transform:translateY(-2px);border-color:rgba(176,138,79,.7);box-shadow:0 8px 22px rgba(93,79,45,.12);background:rgba(255,253,248,.98);}
+  .lang-item:hover{transform:translateY(-2px);border-color:rgba(180,112,59,.7);box-shadow:0 8px 22px rgba(62,42,31,.12);background:rgba(255,253,248,.98);}
   .lang-item:hover .lang-arrow{transform:translateX(2px);stroke:var(--gold);}
   .lang-item:hover .lang-code{color:var(--gold);}
   .lang-list:has(.lang-item:hover) .lang-item:not(:hover){opacity:.6;}
 }
-.lang-item:active{transform:translateY(0);box-shadow:0 1px 6px rgba(93,79,45,.07);}
+.lang-item:active{transform:translateY(0);box-shadow:0 1px 6px rgba(62,42,31,.07);}
 
-/* 선택 — 딥 세이지 반전 */
-.lang-item.selected{background:var(--ink);border-color:var(--ink);box-shadow:0 8px 24px rgba(51,64,58,.24);}
+/* 선택 — 에스프레소 반전 */
+.lang-item.selected{background:var(--ink);border-color:var(--ink);box-shadow:0 8px 24px rgba(36,26,20,.24);}
 .lang-item.selected .lang-name{color:var(--cream);}
-.lang-item.selected .lang-code{color:rgba(255,250,240,.65);}
-.lang-item.selected .lang-arrow{stroke:rgba(255,250,240,.85);transform:translateX(3px);}
+.lang-item.selected .lang-code{color:rgba(252,247,238,.65);}
+.lang-item.selected .lang-arrow{stroke:rgba(252,247,238,.85);transform:translateX(3px);}
 .lang-list:has(.lang-item.selected) .lang-item:not(.selected){opacity:.3;}
 
 /* ── 하단 — 3색 헤어라인 + 시그니처 ── */
@@ -250,9 +250,9 @@ body{
     <span class="brand__label">MIMISOME BUSAN DEOKCHEON</span>
   </div>
 
-  <h1 class="hero" id="ev-title">SEPTEMBER</h1>
+  <h1 class="hero" id="ev-title">OCTOBER</h1>
 
-  <div class="pill" id="ev-period">2026.09.01 — 09.30</div>
+  <div class="pill" id="ev-period">2026.10.01 — 10.31</div>
 
   <div class="eyebrow" id="eyebrow">
     <span class="eyebrow__slot ko active">이벤트를 볼 언어를 선택해 주세요</span>
@@ -301,7 +301,7 @@ body{
   </nav>
 
   <div class="stripe"></div>
-  <div class="footer" id="ev-foot">SEPTEMBER EVENT · MIMISOME CLINIC</div>
+  <div class="footer" id="ev-foot">OCTOBER EVENT · MIMISOME CLINIC</div>
 
 </div>
 
